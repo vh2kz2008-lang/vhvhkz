@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ElectroShop — Thế giới công nghệ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#2563eb;--dark:#0f172a;--muted:#64748b;--bg:#f8fafc;--card:#fff;--line:#e2e8f0;--danger:#ef4444}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--dark)}
+button,input,select{font:inherit}.container{width:min(1180px,92%);margin:auto}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{height:72px;display:flex;align-items:center;gap:24px}.logo{font-size:24px;font-weight:800;color:var(--primary);white-space:nowrap}.logo span{color:#111827}
+.search{flex:1;position:relative}.search input{width:100%;padding:13px 45px 13px 17px;border:1px solid var(--line);border-radius:12px;outline:none;background:#f8fafc}.search input:focus{border-color:var(--primary);background:#fff}.search-icon{position:absolute;right:14px;top:11px}
+.nav-actions{display:flex;gap:10px;align-items:center}.games-btn{border:1px solid #c7d2fe;background:#eef2ff;color:#3730a3;border-radius:11px;padding:10px 13px;cursor:pointer;font-weight:700}.games-btn:hover{background:#e0e7ff}.icon-btn{border:1px solid var(--line);background:#fff;border-radius:11px;padding:10px 13px;cursor:pointer}.cart-count{background:var(--danger);color:#fff;border-radius:99px;padding:2px 6px;font-size:11px;margin-left:3px}
+.hero{padding:42px 0 28px}.hero-box{border-radius:24px;overflow:hidden;background:linear-gradient(120deg,#0f172a,#1d4ed8);color:white;display:grid;grid-template-columns:1.2fr .8fr;min-height:350px}.hero-copy{padding:55px}.eyebrow{color:#bfdbfe;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:13px}.hero h1{font-size:46px;line-height:1.05;margin:13px 0}.hero p{color:#dbeafe;max-width:580px;line-height:1.7}.cta{display:inline-block;margin-top:14px;background:white;color:#1d4ed8;padding:13px 18px;border-radius:11px;font-weight:700;border:0;cursor:pointer}.hero-art{display:flex;align-items:center;justify-content:center;font-size:145px;background:radial-gradient(circle at center,#60a5fa55,transparent 60%)}
+.section-head{display:flex;justify-content:space-between;align-items:end;margin:25px 0 16px}.section-head h2{margin:0;font-size:25px}.categories{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}.cat{background:#fff;border:1px solid var(--line);padding:18px 10px;border-radius:15px;text-align:center;cursor:pointer;transition:.2s}.cat:hover{transform:translateY(-3px);border-color:#93c5fd}.cat-icon{font-size:29px}.cat b{display:block;margin-top:8px;font-size:13px}
+.toolbar{display:flex;gap:10px;align-items:center}.toolbar select{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:17px}.product{background:#fff;border:1px solid var(--line);border-radius:17px;overflow:hidden;position:relative;transition:.2s}.product:hover{transform:translateY(-4px);box-shadow:0 12px 30px #0f172a10}.badge{position:absolute;top:10px;left:10px;background:#fee2e2;color:#b91c1c;font-size:11px;font-weight:700;padding:5px 8px;border-radius:99px}.product-img{height:205px;background:#f8fafc;display:flex;align-items:center;justify-content:center;padding:12px;overflow:hidden}.product-img img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}.product-body{padding:15px}.product-body h3{font-size:15px;line-height:1.4;margin:0 0 8px}.stars{color:#f59e0b;font-size:13px}.stock-line{font-size:12px;color:#64748b;margin:-5px 0 10px}.stock-line.low{color:#dc2626;font-weight:800}.price{font-size:18px;font-weight:800;margin:9px 0 13px}.old{text-decoration:line-through;color:#94a3b8;font-size:12px;font-weight:400;margin-left:6px}.add{width:100%;padding:10px;border:0;border-radius:10px;background:var(--primary);color:#fff;font-weight:700;cursor:pointer}.add:hover{background:#1d4ed8}
+.empty{text-align:center;padding:45px;color:var(--muted);display:none}
+.games-btn{border:0;background:#111827;color:#fff;border-radius:11px;padding:10px 14px;cursor:pointer;font-weight:700}.games-box{width:min(900px,100%)}.game-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}.game-card{border:1px solid var(--line);background:#f8fafc;border-radius:14px;padding:18px;cursor:pointer;text-align:left}.game-card:hover{border-color:#60a5fa;transform:translateY(-2px)}.game-card span{font-size:32px;display:block}.game-card b{display:block;margin-top:8px}.game-card small{color:var(--muted)}.game-area{min-height:320px;background:#080b12;color:#d1d5db;border-radius:16px;padding:24px;position:relative;overflow:hidden}.game-home{text-align:center;padding:30px 10px}.game-home-icon{font-size:54px;margin-bottom:8px}.game-home h3{margin:8px 0;color:#fff}.game-home p{max-width:560px;margin:8px auto 18px;line-height:1.6}.game-home button{border:0;border-radius:9px;padding:10px 14px;background:#2563eb;color:#fff;font-weight:700;cursor:pointer;margin:4px}.game-area h3{color:#fff;font-size:25px}.office{height:220px;border:2px solid #334155;border-radius:12px;background:radial-gradient(circle at 50% 45%,#1e293b,#05070b 65%);position:relative;margin:15px 0}.cam{position:absolute;background:#111827;border:1px solid #475569;padding:9px;border-radius:7px;font-size:12px}.cam1{left:12px;top:12px}.cam2{right:12px;top:12px}.cam3{left:12px;bottom:12px}.cam4{right:12px;bottom:12px}.mascot{font-size:65px;position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);filter:drop-shadow(0 0 14px #ef444455)}.game-controls{display:flex;gap:8px;flex-wrap:wrap}.game-controls button{border:1px solid #475569;background:#111827;color:#fff;border-radius:8px;padding:9px 13px;cursor:pointer}.game-hud{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-weight:700}.warning{color:#fbbf24}.danger{color:#f87171}.cotton-sim{color:#e5e7eb}.cotton-note{background:#111827;border:1px solid #374151;border-radius:10px;padding:12px;line-height:1.5}.cotton-stats{display:flex;gap:18px;flex-wrap:wrap;margin:12px 0}.cotton-field{height:280px;position:relative;border:2px solid #475569;border-radius:14px;background:linear-gradient(#334155,#172033);overflow:hidden}.cotton-boll{position:absolute;border:0;background:transparent;font-size:28px;cursor:pointer;transition:transform .12s,opacity .15s}.cotton-boll:hover{transform:scale(1.2)}.cotton-boll.picked{opacity:.15;transform:scale(.7);pointer-events:none}.cotton-sim button{border:0;border-radius:9px;padding:10px 14px;background:#2563eb;color:#fff;font-weight:700;cursor:pointer;margin:4px}@media(max-width:520px){.game-grid{grid-template-columns:1fr 1fr}.games-btn{padding:9px 10px}}
+footer{margin-top:55px;background:#0f172a;color:#cbd5e1;padding:38px 0}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px}.footer-grid h3{color:white}.footer-grid p{line-height:1.7;font-size:14px}.footer-grid a{display:block;color:#cbd5e1;text-decoration:none;margin:9px 0;font-size:14px}
+.overlay{position:fixed;inset:0;background:#02061780;z-index:40;display:none}.drawer{position:absolute;right:0;top:0;height:100%;width:min(430px,94%);background:#fff;padding:23px;overflow:auto}.drawer-head{display:flex;justify-content:space-between;align-items:center}.close{border:0;background:#f1f5f9;border-radius:8px;padding:8px 11px;cursor:pointer}.cart-item{display:grid;grid-template-columns:62px 1fr auto;gap:11px;padding:14px 0;border-bottom:1px solid var(--line);align-items:center}.mini-img{height:62px;width:62px;background:#f8fafc;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden}.mini-img img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}.qty{display:flex;align-items:center;gap:7px}.qty button{border:1px solid var(--line);background:white;border-radius:6px;width:25px;height:25px;cursor:pointer}.cart-total{display:flex;justify-content:space-between;font-size:19px;font-weight:800;margin:20px 0}.checkout{width:100%;border:0;border-radius:11px;background:#16a34a;color:#fff;padding:13px;font-weight:700;cursor:pointer}
+.modal{position:fixed;inset:0;background:#02061780;z-index:50;display:none;align-items:center;justify-content:center;padding:20px}.modal-box{background:#fff;width:min(700px,100%);max-height:90vh;overflow:auto;border-radius:18px;padding:25px}.detail{display:grid;grid-template-columns:1fr 1fr;gap:25px}.detail-img{background:#f8fafc;border-radius:14px;min-height:300px;display:flex;align-items:center;justify-content:center;padding:18px;overflow:hidden}.detail-img img{width:100%;height:280px;object-fit:contain;mix-blend-mode:multiply}.detail h2{margin-top:0}.detail-price{font-size:27px;font-weight:800;color:#1d4ed8}.features{padding-left:18px;line-height:2}.form{display:grid;gap:12px}.form input,.form textarea{padding:12px;border:1px solid var(--line);border-radius:10px;outline:none}.form textarea{min-height:90px;resize:vertical}.confirm{border:0;background:var(--primary);color:#fff;border-radius:10px;padding:12px;font-weight:700;cursor:pointer}.games-box{width:min(760px,100%)}.game-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}.game-card{border:1px solid var(--line);background:#f8fafc;border-radius:14px;padding:18px;cursor:pointer;text-align:left}.game-card:hover{border-color:#93c5fd;transform:translateY(-2px)}.game-card span{font-size:30px;display:block;margin-bottom:8px}.game-card b,.game-card small{display:block}.game-card small{color:var(--muted);margin-top:4px}.game-area{background:#f1f5f9;border-radius:14px;padding:20px;min-height:90px}.game-area button{border:0;border-radius:9px;padding:10px 14px;background:var(--primary);color:#fff;font-weight:700;cursor:pointer;margin:4px}@media(max-width:520px){.games-btn{padding:9px 10px}.game-grid{grid-template-columns:1fr}}
+@media(max-width:850px){.nav{gap:10px}.nav-actions .hide-mobile{display:none}.hero-box{grid-template-columns:1fr}.hero-art{display:none}.hero-copy{padding:38px}.hero h1{font-size:36px}.categories{grid-template-columns:repeat(3,1fr)}.products{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.logo{font-size:19px}.nav{height:auto;padding:12px 0;flex-wrap:wrap}.search{order:3;flex-basis:100%}.hero{padding-top:18px}.hero-copy{padding:30px 23px}.hero h1{font-size:31px}.categories{grid-template-columns:repeat(2,1fr)}.products{grid-template-columns:1fr}.section-head{align-items:flex-start;gap:10px;flex-direction:column}.detail{grid-template-columns:1fr}.detail-img{min-height:220px}}
+
+/* Bottom special-offer banner */
+.floating-offer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 9999;
+  background: linear-gradient(90deg, #111827 0%, #1f2937 55%, #111827 100%);
+  color: #fff;
+  border-top: 2px solid rgba(255,255,255,.14);
+  box-shadow: 0 -5px 18px rgba(0,0,0,.18);
+  animation: bannerIn .35s ease-out;
+}
+.floating-offer .offer-top {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 5px 22px 0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+}
+.floating-offer .offer-badge {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #fde68a;
+}
+.floating-offer .offer-close {
+  border:0;
+  background:rgba(255,255,255,.1);
+  color:#fff;
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  cursor:pointer;
+}
+.floating-offer .offer-body {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 7px 22px 9px;
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+.floating-offer h4 { margin:0; font-size:16px; white-space:nowrap; }
+.floating-offer p { margin:0; color:#cbd5e1; font-size:13px; flex:1; }
+.offer-price { display:flex; align-items:baseline; gap:9px; white-space:nowrap; }
+.new-price { font-size:18px; font-weight:900; color:#86efac; }
+.old-price { font-size:12px; color:#94a3b8; text-decoration:line-through; }
+.offer-btn { border:0; border-radius:8px; padding:9px 14px; background:#16a34a; color:#fff; font-weight:800; cursor:pointer; white-space:nowrap; }
+.offer-btn:hover { filter:brightness(1.08); }
+@keyframes bannerIn { from { transform:translateY(100%); } to { transform:translateY(0); } }
+@media(max-width:700px){
+  .floating-offer .offer-body { flex-wrap:wrap; gap:8px 12px; padding-top:3px; }
+  .floating-offer p { flex-basis:100%; order:3; }
+  .floating-offer h4 { font-size:14px; }
+  .new-price { font-size:16px; }
+}
+
+/* Distinct desktop and phone layouts */
+.mobile-bottom-nav{display:none}
+@media(min-width:851px){
+  .container{width:min(1220px,90%)}
+  .nav{height:78px;gap:28px}
+  .hero{padding-top:48px}
+  .hero-box{min-height:390px}
+  .hero-copy{padding:62px}
+  .products{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+}
+@media(max-width:700px){
+  body{padding-bottom:158px}
+  .container{width:calc(100% - 24px)}
+  header{position:sticky;top:0}
+  .nav{display:grid;grid-template-columns:1fr auto;gap:10px;padding:10px 0}
+  .logo{font-size:21px;grid-column:1}
+  .nav-actions{grid-column:2;grid-row:1;gap:6px}
+  .nav-actions .hide-mobile{display:none}
+  .games-btn,.icon-btn{padding:9px 10px;border-radius:10px}
+  .search{grid-column:1 / -1;grid-row:2;width:100%;order:initial}
+  .search input{padding:12px 40px 12px 13px}
+  .hero{padding:14px 0 20px}
+  .hero-box{display:block;border-radius:18px;min-height:0}
+  .hero-copy{padding:25px 21px}
+  .hero h1{font-size:clamp(28px,8vw,36px);line-height:1.08}
+  .hero p{font-size:14px;line-height:1.6}
+  .hero-art{display:none}
+  .section-head{margin:20px 0 12px;align-items:center;flex-direction:row}
+  .section-head h2{font-size:20px}
+  .categories{display:flex;overflow-x:auto;gap:9px;padding:2px 1px 10px;scroll-snap-type:x mandatory}
+  .cat{flex:0 0 112px;padding:13px 8px;scroll-snap-align:start}
+  .cat-icon{font-size:25px}
+  .cat b{font-size:12px}
+  .toolbar select{max-width:150px;padding:9px 8px;font-size:12px}
+  .products{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .product{border-radius:13px}
+  .product-img{height:140px;padding:8px}
+  .product-body{padding:11px}
+  .product-body h3{font-size:13px}
+  .price{font-size:15px;margin:8px 0 10px}
+  .old{display:block;margin:3px 0 0;font-size:11px}
+  .add{font-size:12px;padding:10px 6px}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:18px}
+  .modal{padding:8px;align-items:flex-end}
+  .modal-box{width:100%;max-height:92dvh;border-radius:18px 18px 0 0;padding:18px}
+  .detail{grid-template-columns:1fr;gap:15px}
+  .detail-img{min-height:150px}.detail-img img{height:190px}
+  .game-grid{grid-template-columns:1fr 1fr}
+  .game-card{padding:12px}
+  .game-area{padding:14px;min-height:250px}
+  .office{height:190px}
+  .floating-offer{bottom:60px}
+  .floating-offer .offer-top{padding:4px 12px 0}
+  .floating-offer .offer-body{padding:5px 12px 8px;display:grid;grid-template-columns:1fr auto;gap:5px 10px}
+  .floating-offer h4{font-size:13px;white-space:normal}
+  .floating-offer p{grid-column:1 / -1;order:initial;font-size:11px;line-height:1.35}
+  .offer-price{gap:7px}
+  .new-price{font-size:15px}
+  .old-price{font-size:10px}
+  .offer-btn{font-size:11px;padding:8px 10px}
+  .mobile-bottom-nav{position:fixed;display:grid;grid-template-columns:repeat(4,1fr);left:0;right:0;bottom:0;z-index:9998;padding:6px 5px calc(6px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -5px 18px #0f172a12}
+  .mobile-bottom-nav button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border:0;background:transparent;color:#334155;padding:4px 2px;cursor:pointer}
+  .mobile-bottom-nav button span{font-size:20px;line-height:1.2}
+  .mobile-bottom-nav button small{font-size:10px;font-weight:700}
+}
+
+</style>
+</head>
+<body>
+<header><div class="container nav">
+  <div class="logo">Electro<span>Shop</span></div>
+  <div class="search"><input id="search" placeholder="Tìm kiếm điện thoại, laptop, tai nghe..." oninput="renderProducts()"><span class="search-icon">🔎</span></div>
+  <div class="nav-actions"><button type="button" class="games-btn" onclick="openGames()">🎮 Games</button><button class="icon-btn hide-mobile" onclick="scrollToProducts()">🛍️ Sản phẩm</button><button class="icon-btn" onclick="openCart()">🛒 <span class="cart-count" id="cartCount">0</span></button></div>
+</div></header>
+
+<!-- Mobile-only navigation: a separate compact interface for phones -->
+<nav class="mobile-bottom-nav" aria-label="Điều hướng trên điện thoại">
+  <button type="button" onclick="window.scrollTo({top:0,behavior:'smooth'})"><span>⌂</span><small>Trang chủ</small></button>
+  <button type="button" onclick="scrollToProducts()"><span>🛍️</span><small>Sản phẩm</small></button>
+  <button type="button" onclick="openGames()"><span>🎮</span><small>Games</small></button>
+  <button type="button" onclick="openCart()"><span>🛒</span><small>Giỏ hàng</small></button>
+</nav>
+
+<main>
+<section class="hero container"><div class="hero-box"><div class="hero-copy">
+  <div class="eyebrow">Deal công nghệ mỗi ngày</div><h1>Nâng cấp công nghệ.<br>Tiết kiệm hơn.</h1>
+  <p>Khám phá điện thoại, laptop, tablet, tai nghe và phụ kiện chính hãng với mức giá hấp dẫn.</p>
+  <button class="cta" onclick="scrollToProducts()">Mua sắm ngay →</button>
+</div><div class="hero-art">💻</div></div></section>
+
+<section class="container"><div class="section-head"><h2>Danh mục</h2></div><div class="categories">
+  <div class="cat" onclick="filterCat('Điện thoại')"><div class="cat-icon">📱</div><b>Điện thoại</b></div>
+  <div class="cat" onclick="filterCat('Laptop')"><div class="cat-icon">💻</div><b>Laptop</b></div>
+  <div class="cat" onclick="filterCat('Tablet')"><div class="cat-icon">📲</div><b>Tablet</b></div>
+  <div class="cat" onclick="filterCat('Tai nghe')"><div class="cat-icon">🎧</div><b>Tai nghe</b></div>
+  <div class="cat" onclick="filterCat('Đồng hồ')"><div class="cat-icon">⌚</div><b>Đồng hồ</b></div>
+  <div class="cat" onclick="filterCat('Phụ kiện')"><div class="cat-icon">🔌</div><b>Phụ kiện</b></div>
+</div></section>
+
+<section class="container" id="products-section"><p id="inventoryNotice" style="font-size:13px;color:#64748b"></p><div class="section-head"><h2>Sản phẩm nổi bật</h2><div class="toolbar"><select id="sort" onchange="renderProducts()"><option value="featured">Nổi bật</option><option value="priceAsc">Giá thấp → cao</option><option value="priceDesc">Giá cao → thấp</option></select></div></div>
+<div class="products" id="products"></div><div class="empty" id="empty">Không tìm thấy sản phẩm phù hợp.</div></section>
+</main>
+
+<footer><div class="container footer-grid">
+<div><h3>ElectroShop</h3><p>Cửa hàng công nghệ trực tuyến demo. Website mẫu có giỏ hàng, tìm kiếm, lọc sản phẩm và thanh toán mô phỏng.</p></div>
+<div><h3>Mua sắm</h3><a href="#products-section">Điện thoại</a><a href="#products-section">Laptop</a><a href="#products-section">Phụ kiện</a></div>
+<div><h3>Hỗ trợ</h3><a href="#">Trung tâm trợ giúp</a><a href="#">Chính sách đổi trả</a><a href="#">Bảo hành</a></div>
+<div><h3>Liên hệ</h3><a href="mailto:hello@electroshop.vn">hello@electroshop.vn</a><a href="#">1900 1234</a></div>
+</div></footer>
+
+<div class="overlay" id="cartOverlay" onclick="if(event.target===this)closeCart()"><aside class="drawer"><div class="drawer-head"><h2>🛒 Giỏ hàng</h2><button class="close" onclick="closeCart()">✕</button></div><div id="cartItems"></div><div class="cart-total"><span>Tổng cộng</span><span id="cartTotal">0₫</span></div><button class="checkout" onclick="openCheckout()">Thanh toán</button></aside></div>
+
+<div class="modal" id="detailModal" onclick="if(event.target===this)closeDetail()"><div class="modal-box" id="detailBox"></div></div>
+<div class="modal" id="checkoutModal" onclick="if(event.target===this)closeCheckout()"><div class="modal-box"><div class="drawer-head"><h2>Thanh toán</h2><button class="close" onclick="closeCheckout()">✕</button></div><p>Điền thông tin để hoàn tất đơn hàng demo.</p><form class="form" onsubmit="placeOrder(event)"><input required placeholder="Họ và tên"><input required type="tel" placeholder="Số điện thoại"><input required placeholder="Địa chỉ giao hàng"><textarea placeholder="Ghi chú (không bắt buộc)"></textarea><button class="confirm">Đặt hàng</button></form></div></div>
+<div class="modal" id="gamesModal" onclick="if(event.target===this)closeGames()"><div class="modal-box games-box"><div class="drawer-head"><h2>🎮 Games</h2><button class="close" onclick="closeGames()">✕</button></div><div class="game-grid"><button class="game-card" onclick="playGuess()"><span>🔢</span><b>Đoán số</b><small>Mini-game</small></button><button class="game-card" onclick="playClick()"><span>⚡</span><b>Click Rush</b><small>Mini-game</small></button></div><div id="gameArea" class="game-area"><p>Chọn một game ở trên 👆</p></div></div></div>
+
+
+<script>
+const products=[
+{id:1,name:"iPhone 16 Pro",cat:"Điện thoại",price:28990000,old:30990000,image:'https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/42/329144/iphone-16-pro-titan-tu-nhien-0-639175366182603914.jpg',rating:4.9,desc:"Chip A18 Pro, màn hình Super Retina XDR và camera chuyên nghiệp."},
+{id:2,name:"Samsung Galaxy S25 Ultra",cat:"Điện thoại",price:31990000,old:33990000,image:'https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/42/333347/galaxy-s25-ultra-xanh-duong-1-638748062746442173.jpg',rating:4.8,desc:"Flagship Android với S Pen, camera độ phân giải cao và hiệu năng mạnh."},
+{id:3,name:"MacBook Air M4 13\"",cat:"Laptop",price:26990000,old:28990000,image:'https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/44/335362/macbook-air-13-inch-m4-16gb-256gb-tgdd-1-638768909105991664.jpg',rating:4.9,desc:"Thiết kế mỏng nhẹ, chip Apple M4, thời lượng pin dài."},
+{id:4,name:"ASUS ROG Zephyrus G16",cat:"Laptop",price:44990000,old:47990000,image:'https://dlcdnwebimgs.asus.com/gain/E4E1A4CD-1261-43D1-A18D-C91711A989AD/w1000/h732',rating:4.8,desc:"Laptop gaming cao cấp, màn hình OLED và GPU mạnh mẽ."},
+{id:5,name:"iPad Air M3",cat:"Tablet",price:16990000,old:17990000,image:'https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/522/335268/ipad-air-m3-11-inch-wifi-gray-1-638771975537046711.jpg',rating:4.7,desc:"Tablet hiệu năng cao, màn hình Liquid Retina và hỗ trợ Apple Pencil."},
+{id:6,name:"Sony WH-1000XM6",cat:"Tai nghe",price:9990000,old:10990000,image:'https://i5.walmartimages.com/seo/Sony-WH1000XM6-Noise-Canceling-Wireless-Over-Ear-Headphones_d2003a94-8470-40a3-9c35-caa83fcd0fbf.23d9fe2fd83f695791951057f6879667.jpeg?odnBg=FFFFFF&odnHeight=768&odnWidth=768',rating:4.9,desc:"Tai nghe chống ồn chủ động, âm thanh chi tiết và thoải mái."},
+{id:7,name:"Apple Watch Series 11",cat:"Đồng hồ",price:10990000,old:11990000,image:'https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/7077/344750/apple-watch-series-11-vien-nhom-day-the-thao-hong-1-638931878401695857.jpg',rating:4.7,desc:"Đồng hồ thông minh với nhiều tính năng sức khỏe và thể thao."},
+{id:8,name:"Anker 737 Power Bank",cat:"Phụ kiện",price:2290000,old:2590000,image:'https://content.abt.com/image.php/95961c5a55c0abdb13f9faecf7466b05?canvas=&ck=2&height=750&image=%2Fimages%2Fproducts%2FBDP_Images%2Fanker-powerbank-A1289011-front-angle.jpg&width=750',rating:4.6,desc:"Pin dự phòng công suất cao, nhiều cổng sạc nhanh."}
+];
+let inventoryStock={};
+async function loadInventory(){try{const r=await fetch("/api/inventory",{cache:"no-store"});const j=await r.json();if(!r.ok||!j.success)throw new Error(j.message||"Inventory API error");inventoryStock={};j.data.forEach(row=>{const id=Number(row.MaHang);if(Number.isFinite(id))inventoryStock[id]=Math.max(0,Number(row.SoLuong)||0)});const total=Object.values(inventoryStock).reduce((a,b)=>a+b,0),soldOut=Object.values(inventoryStock).filter(n=>n===0).length;const note=document.getElementById("inventoryNotice");if(note)note.textContent=`Đã kết nối cơ sở dữ liệu SQLite • Tổng tồn kho: ${total} sản phẩm • ${soldOut} sản phẩm hết hàng`;cart=cart.filter(i=>inventoryStock[i.id]!==undefined&&inventoryStock[i.id]>0).map(i=>({...i,qty:Math.min(i.qty,inventoryStock[i.id])}));saveCart();renderProducts();}catch(e){console.warn("Không tải được tồn kho:",e.message);const note=document.getElementById("inventoryNotice");if(note)note.textContent="Chưa kết nối được cơ sở dữ liệu kho. Hãy chạy npm install và npm start trong thư mục dự án.";}}
+let cart=[]; try{cart=JSON.parse(localStorage.getItem("electroCart")||"[]");if(!Array.isArray(cart))cart=[];}catch(e){cart=[];} let activeCat="Tất cả";
+const money=n=>n.toLocaleString("vi-VN")+"₫";
+function renderProducts(){
+ let q=document.getElementById("search").value.toLowerCase(), sort=document.getElementById("sort").value;
+ let list=products.filter(p=>(activeCat==="Tất cả"||p.cat===activeCat)&&(p.name.toLowerCase().includes(q)||p.cat.toLowerCase().includes(q)));
+ if(sort==="priceAsc")list.sort((a,b)=>a.price-b.price); if(sort==="priceDesc")list.sort((a,b)=>b.price-a.price);
+ document.getElementById("empty").style.display=list.length?"none":"block";
+ document.getElementById("products").innerHTML=list.map(p=>`<article class="product">
+ <span class="badge">${inventoryStock[p.id]===0?"HẾT HÀNG":`- ${Math.round((1-p.price/p.old)*100)}%`}</span><div class="product-img"><img src="${p.image}" alt="${p.name}" loading="lazy" referrerpolicy="no-referrer"></div>
+ <div class="product-body"><h3>${p.name}</h3><div class="stars">★★★★★ <span style="color:#64748b">(${p.rating})</span></div>
+ <div class="stock-line ${inventoryStock[p.id]!==undefined&&inventoryStock[p.id]<5?"low":""}">${inventoryStock[p.id]===undefined?"Tồn kho: đang tải…":inventoryStock[p.id]>0?`Còn ${inventoryStock[p.id]} sản phẩm`:"Tạm hết hàng"}</div><div class="price">${money(p.price)} <span class="old">${money(p.old)}</span></div>
+ <button class="add" ${inventoryStock[p.id]===0?"disabled style=\"opacity:.45;cursor:not-allowed\"":""} onclick="addToCart(${p.id})">${inventoryStock[p.id]===0?"Hết hàng":"Thêm vào giỏ"}</button>
+ <button class="add" style="margin-top:7px;background:#eef2ff;color:#1d4ed8" onclick="showDetail(${p.id})">Xem chi tiết</button></div></article>`).join("");
+}
+function filterCat(cat){activeCat=cat;document.getElementById("search").value="";renderProducts();scrollToProducts()}
+function scrollToProducts(){document.getElementById("products-section").scrollIntoView({behavior:"smooth"})}
+function addToCart(id){const available=inventoryStock[id];const x=cart.find(i=>i.id===id);if(available===undefined){alert("Đang tải dữ liệu tồn kho. Vui lòng thử lại.");return}if(available<=0||(x&&x.qty>=available)){alert("Số lượng tồn kho không đủ!");return}if(x)x.qty++;else cart.push({id,qty:1});saveCart();openCart()}
+function saveCart(){localStorage.setItem("electroCart",JSON.stringify(cart));updateCartCount();renderCart()}
+function updateCartCount(){document.getElementById("cartCount").textContent=cart.reduce((s,i)=>s+i.qty,0)}
+function renderCart(){
+ let el=document.getElementById("cartItems");
+ if(!cart.length){el.innerHTML='<p style="color:#64748b;text-align:center;padding:40px 0">Giỏ hàng đang trống.</p>';document.getElementById("cartTotal").textContent="0₫";return}
+ el.innerHTML=cart.map(i=>{let p=products.find(x=>x.id===i.id);return `<div class="cart-item"><div class="mini-img"><img src="${p.image}" alt="${p.name}" loading="lazy" referrerpolicy="no-referrer"></div><div><b>${p.name}</b><div style="font-size:13px;color:#64748b">${money(p.price)}</div><div class="qty"><button onclick="changeQty(${p.id},-1)">−</button>${i.qty}<button onclick="changeQty(${p.id},1)">+</button></div></div><button class="close" onclick="removeCart(${p.id})">🗑️</button></div>`}).join("");
+ document.getElementById("cartTotal").textContent=money(cart.reduce((s,i)=>s+products.find(p=>p.id===i.id).price*i.qty,0));
+}
+function changeQty(id,n){let x=cart.find(i=>i.id===id);if(!x)return;const next=x.qty+n;if(next>0&&next>(inventoryStock[id]??0)){alert("Số lượng vượt quá tồn kho hiện tại!");return}x.qty=next;if(x.qty<=0)cart=cart.filter(i=>i.id!==id);saveCart()}
+function removeCart(id){cart=cart.filter(i=>i.id!==id);saveCart()}
+function openCart(){document.getElementById("cartOverlay").style.display="block";renderCart()}
+function closeCart(){document.getElementById("cartOverlay").style.display="none"}
+function showDetail(id){let p=products.find(x=>x.id===id);document.getElementById("detailBox").innerHTML=`<div class="drawer-head"><h2>Chi tiết sản phẩm</h2><button class="close" onclick="closeDetail()">✕</button></div><div class="detail"><div class="detail-img"><img src="${p.image}" alt="${p.name}" loading="lazy" referrerpolicy="no-referrer"></div><div><h2>${p.name}</h2><div class="stars">★★★★★ ${p.rating}/5</div><p>${p.desc}</p><div class="detail-price">${money(p.price)}</div><p class="stock-line">${inventoryStock[p.id]===undefined?"Đang tải tồn kho…":`Số lượng còn lại: ${inventoryStock[p.id]}`}</p><ul class="features"><li>Chính hãng 100%</li><li>Bảo hành theo hãng</li><li>Đổi trả trong 7 ngày</li><li>Giao hàng toàn quốc</li></ul><button class="add" onclick="addToCart(${p.id});closeDetail()">Thêm vào giỏ hàng</button></div></div>`;document.getElementById("detailModal").style.display="flex"}
+function closeDetail(){document.getElementById("detailModal").style.display="none"}
+function openCheckout(){if(!cart.length){alert("Giỏ hàng đang trống!");return}closeCart();document.getElementById("checkoutModal").style.display="flex"}
+function closeCheckout(){document.getElementById("checkoutModal").style.display="none"}
+async function placeOrder(e){e.preventDefault();if(!cart.length){alert("Giỏ hàng đang trống!");return}try{const r=await fetch("/api/orders",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({items:cart.map(i=>({id:i.id,quantity:i.qty}))})});const result=await r.json();if(!r.ok||!result.success)throw new Error(result.message||"Không thể đặt hàng.");cart=[];saveCart();closeCheckout();await loadInventory();alert(`Đặt hàng thành công! Mã đơn: #${result.orderId}. Tồn kho đã được cập nhật.`)}catch(err){await loadInventory();alert(err.message||"Có lỗi khi đặt hàng. Vui lòng thử lại.")}}
+function openGames(){
+ const m=document.getElementById("gamesModal");
+ if(!m)return;
+ m.style.display="flex";m.setAttribute("aria-hidden","false");
+ showGameMenu();
+}
+function closeGames(){
+ const m=document.getElementById("gamesModal");
+ if(m){m.style.display="none";m.setAttribute("aria-hidden","true");}
+ clearInterval(fn.interval); clearInterval(clickTimer);
+}
+function showGameMenu(){
+ clearInterval(fn.interval); clearInterval(clickTimer);
+ const a=document.getElementById("gameArea"); if(!a)return;
+ a.innerHTML=`<div class="game-home"><div class="game-home-icon">🎮</div><h3>GAME ARCADE</h3><p>Chọn một mini-game để bắt đầu.</p><button type="button" onclick="playGuess()">🔢 Guess Number</button><button type="button" onclick="playClick()">⚡ Click Rush</button></div>`;
+}
+let fn={night:1,hour:12,power:100,doorL:false,doorR:false,enemy:"left",camera:false,over:false,phase:0,logs:[],interval:null,between:false};
+let clickTimer=null;
+function startFiveNights(){
+ clearInterval(fn.interval); clearInterval(clickTimer);
+ fn={night:1,hour:12,power:100,doorL:false,doorR:false,enemy:Math.random()<.5?"left":"right",camera:false,over:false,phase:0,logs:["12 AM — the shop is quiet..."],interval:null,between:false};
+ renderOffice("Use the camera to locate E’s, then shut the matching door before advancing time.");
+}
+function renderOffice(msg=""){
+ const a=document.getElementById("gameArea"); if(!a)return;
+ const hourLabel=fn.hour===12?"12 AM":fn.hour+" AM";
+ const threat=fn.enemy==="left"?"LEFT HALL":"RIGHT HALL";
+ const mascot=fn.enemy==="left"?"🤖":"👾";
+ const last=fn.logs.slice(-3).map(x=>`<div>• ${x}</div>`).join("");
+ a.innerHTML=`<div class="game-hud"><span>🌙 NIGHT ${fn.night}/5</span><span>🕛 ${hourLabel}</span><span class="${fn.power<=20?'danger':''}">⚡ ${fn.power}%</span></div>
+ <div class="office"><div class="office-title">ELECTROSHOP SECURITY OFFICE</div><div class="monitor monitor-left">CAM 02<br><b>LEFT HALL</b></div><div class="monitor monitor-right">CAM 03<br><b>RIGHT HALL</b></div><div class="desk"></div><div class="mascot ${fn.camera?'visible':''}">${fn.camera?mascot:"?"}</div><div class="door door-left ${fn.doorL?'closed':''}"></div><div class="door door-right ${fn.doorR?'closed':''}"></div></div>
+ <div class="status-line">${fn.camera?`📹 CAMERA: E’s detected in the <b>${threat}</b>.`:"📹 CAMERA: press Check Camera to scan the halls."}</div>
+ <p class="warning">${msg}</p>
+ <div class="game-controls"><button type="button" onclick="checkCamera()">📹 Check Camera <span>-3%</span></button><button type="button" onclick="toggleDoor('left')">🚪 Left Door: ${fn.doorL?"CLOSED":"OPEN"}</button><button type="button" onclick="toggleDoor('right')">🚪 Right Door: ${fn.doorR?"CLOSED":"OPEN"}</button><button type="button" onclick="waitHour()">⏩ Advance 1 Hour</button><button type="button" onclick="startFiveNights()">↻ Restart</button><button type="button" onclick="showGameMenu()">🎮 Game Menu</button></div>
+ <div class="event-log">${last}</div>`;
+}
+function spendPower(n){fn.power=Math.max(0,fn.power-n);if(fn.power<=0){powerOut();return false;}return true;}
+function advanceHour(){
+ if(fn.over || fn.between)return;
+ const protectedSide=fn.enemy==="left"?fn.doorL:fn.doorR;
+ if(!protectedSide && Math.random()<0.18){endNight();return;}
+ const drain=2+(fn.doorL?3:0)+(fn.doorR?3:0);
+ fn.power=Math.max(0,fn.power-drain);
+ if(fn.power<=0){powerOut();return;}
+ fn.hour = fn.hour===12 ? 1 : fn.hour+1;
+ if(fn.hour===6){
+   fn.logs.push(`6 AM — Night ${fn.night} cleared!`);
+   fn.between=true;
+   if(fn.night>=5){winFiveNights();return;}
+   renderNightClear();
+   return;
+ }
+ fn.enemy=Math.random()<.5?"left":"right";
+ fn.camera=false;
+ fn.logs.push(`${fn.hour} AM — movement detected.`);
+ renderOffice(`🕐 ${fn.hour} AM. The halls changed. Check the camera before your next move.`);
+}
+function waitHour(){advanceHour();}
+function renderNightClear(){
+ const a=document.getElementById("gameArea");
+ a.innerHTML=`<div class="game-home"><div class="game-home-icon">🌅</div><h3>6:00 AM — NIGHT ${fn.night} CLEARED</h3><p>You made it through Night ${fn.night}. Your power is at <b>${fn.power}%</b>.</p><p>Nothing advances until you choose to start the next night.</p><button type="button" onclick="startNextNight()">▶ Start Night ${fn.night+1}</button><button type="button" onclick="showGameMenu()">🎮 Game Menu</button></div>`;
+}
+function startNextNight(){
+ if(fn.night>=5){winFiveNights();return;}
+ fn.night++; fn.hour=12; fn.doorL=false; fn.doorR=false; fn.camera=false; fn.between=false;
+ fn.enemy=Math.random()<.5?"left":"right";
+ fn.logs.push(`12 AM — Night ${fn.night} begins.`);
+ renderOffice(`🌙 Night ${fn.night} has started. You are back at 12 AM.`);
+}
+function toggleDoor(side){
+ if(fn.over)return;
+ if(side==="left")fn.doorL=!fn.doorL;else fn.doorR=!fn.doorR;
+ if(!spendPower(1))return;
+ fn.logs.push(`${side==="left"?"Left":"Right"} door ${side==="left"?(fn.doorL?"closed":"opened"):(fn.doorR?"closed":"opened")}.`);
+ renderOffice("Door control used 1% power.");
+}
+function checkCamera(){
+ if(fn.over)return;
+ if(!spendPower(3))return;
+ fn.camera=true;fn.logs.push(`Camera scan: E’s is in the ${fn.enemy} hall.`);renderOffice("Keep the matching door closed when you advance the hour.");
+}
+function powerOut(){fn.over=true;clearInterval(fn.interval);document.getElementById("gameArea").innerHTML='<div class="game-home"><div class="game-home-icon">🔋</div><h3 class="danger">POWER OUT</h3><p>The security office went dark before 6 AM.</p><button type="button" onclick="startFiveNights()">Try Again</button><button type="button" onclick="showGameMenu()">Game Menu</button></div>'}
+function endNight(){fn.over=true;clearInterval(fn.interval);document.getElementById("gameArea").innerHTML='<div class="game-home"><div class="game-home-icon">🚨</div><h3 class="danger">CAUGHT</h3><p>E’s reached the office while the matching door was open.</p><button type="button" onclick="startFiveNights()">Try Again</button><button type="button" onclick="showGameMenu()">Game Menu</button></div>'}
+function winFiveNights(){fn.over=true;clearInterval(fn.interval);document.getElementById("gameArea").innerHTML='<div class="game-home"><div class="game-home-icon">🌅</div><h3>6:00 AM — YOU SURVIVED</h3><p>You cleared all five nights at E’s. The shop lights finally come back on.</p><button type="button" onclick="startFiveNights()">Play Again</button><button type="button" onclick="showGameMenu()">Game Menu</button></div>'}
+
+function startHistorySim(){
+ clearInterval(fn.interval); clearInterval(clickTimer);
+ const a=document.getElementById("gameArea"); if(!a)return;
+ a.innerHTML=`<div class="history-sim">
+ <div class="game-hud"><span>📜 HISTORY SIMULATION</span><span>Educational mode</span></div>
+ <h3>Slavery & Abolition</h3>
+ <p>This simulation explores the historical system of slavery, resistance, abolition movements, and emancipation. It is designed to study historical forces, not to treat enslaved people as game characters.</p>
+ <div class="history-facts"><div><b>🌍 Atlantic world</b><small>Millions of Africans were forcibly transported across the Atlantic from the 16th to 19th centuries.</small></div><div><b>✊ Resistance</b><small>Enslaved people resisted slavery in many forms, including escape, revolts, cultural preservation, and everyday acts of resistance.</small></div><div><b>🕊️ Abolition</b><small>Abolition movements involved formerly enslaved people, activists, religious groups, political campaigns, and legal changes.</small></div></div>
+ <div id="historyQuestion" class="history-question"></div>
+ <div class="game-controls"><button type="button" onclick="historyChoice(0)">Option A</button><button type="button" onclick="historyChoice(1)">Option B</button><button type="button" onclick="historyChoice(2)">Option C</button></div>
+ <p id="historyFeedback" class="warning"></p>
+ <button type="button" onclick="showGameMenu()">🎮 Game Menu</button>
+ </div>`;
+ window.historyStep=0; renderHistoryStep();
+}
+function startCottonSim(){
+ clearInterval(fn.interval); clearInterval(clickTimer);
+ const a=document.getElementById("gameArea"); if(!a)return;
+ window.cottonGame={picked:0,total:24,seconds:30,fatigue:0,done:false};
+ a.innerHTML=`<div class="cotton-sim">
+ <div class="game-hud"><span>🌱 COTTON HARVEST — HISTORICAL SIMULATION</span><span id="cottonTimer">30s</span></div>
+ <p class="cotton-note"><b>Historical context:</b> This minigame recreates the repetitive harvesting task as a way to study forced agricultural labor under slavery. It does not portray slavery as entertainment or treat the people subjected to it as game characters.</p>
+ <div class="cotton-stats"><span>🧺 Harvested: <b id="cottonCount">0/24</b></span><span>💪 Fatigue: <b id="cottonFatigue">0%</b></span></div>
+ <div id="cottonField" class="cotton-field"></div>
+ <p id="cottonFeedback" class="warning">Click the cotton bolls to harvest them.</p>
+ <button type="button" onclick="startCottonSim()">↻ Restart Shift</button><button type="button" onclick="showGameMenu()">🎮 Game Menu</button>
+ </div>`;
+ const field=document.getElementById("cottonField");
+ for(let i=0;i<24;i++){
+   const b=document.createElement("button"); b.type="button"; b.className="cotton-boll"; b.textContent="☁️";
+   b.style.left=(4+(i*37)%88)+"%"; b.style.top=(8+(i*53)%76)+"%";
+   b.onclick=()=>pickCotton(b); field.appendChild(b);
+ }
+ window.cottonTimer=setInterval(()=>{
+   const g=window.cottonGame; if(!g||g.done)return;
+   g.seconds--; g.fatigue=Math.min(100,g.fatigue+2);
+   const t=document.getElementById("cottonTimer"); if(t)t.textContent=g.seconds+"s";
+   const f=document.getElementById("cottonFatigue"); if(f)f.textContent=g.fatigue+"%";
+   if(g.seconds<=0)finishCottonSim(false);
+ },1000);
+}
+function pickCotton(btn){
+ const g=window.cottonGame; if(!g||g.done||btn.disabled)return;
+ btn.disabled=true; btn.classList.add("picked"); g.picked++; g.fatigue=Math.min(100,g.fatigue+4);
+ const c=document.getElementById("cottonCount"); if(c)c.textContent=g.picked+"/"+g.total;
+ const f=document.getElementById("cottonFatigue"); if(f)f.textContent=g.fatigue+"%";
+ const msg=document.getElementById("cottonFeedback"); if(msg)msg.textContent=g.picked===g.total?"All 24 bolls harvested. Shift complete.":"Keep harvesting — this task is intentionally repetitive to illustrate the labor involved.";
+ if(g.picked>=g.total)finishCottonSim(true);
+}
+function finishCottonSim(completed){
+ const g=window.cottonGame; if(!g||g.done)return; g.done=true; clearInterval(window.cottonTimer);
+ const a=document.getElementById("gameArea");
+ a.innerHTML=`<div class="game-home"><div class="game-home-icon">🌱</div><h3>${completed?"SHIFT COMPLETE":"TIME UP"}</h3><p>You harvested <b>${g.picked}/${g.total}</b> cotton bolls in the simulation.</p><p>This simplified mechanic represents one repetitive agricultural task. Historically, enslaved Black people were forced to perform agricultural labor under slavery; the real human conditions cannot be reduced to a score or game.</p><p><b>Think about:</b> Who controlled the labor? What choices did enslaved people have? How did resistance and abolition challenge the system?</p><button type="button" onclick="startCottonSim()">Play Again</button><button type="button" onclick="startHistorySim()">📜 Continue History</button><button type="button" onclick="showGameMenu()">🎮 Game Menu</button></div>`;
+}
+
+const historySteps=[
+ {q:"A historian wants to understand why abolition happened. Which approach is most useful?",o:["Study only one politician","Examine social movements, laws, economic changes, resistance, and testimony","Ignore the experiences of enslaved people"],a:1,e:"A broad approach gives a more complete historical picture."},
+ {q:"Which statement best describes resistance to slavery?",o:["It never occurred","It took many forms, including escape, rebellion, cultural survival, and everyday resistance","It only happened through elections"],a:1,e:"Resistance took many forms and varied by place and period."},
+ {q:"Why are first-person accounts by formerly enslaved people important to historians?",o:["They provide evidence about lived experiences and perspectives","They are automatically perfect and need no comparison","They only describe economics"],a:0,e:"Testimony provides valuable evidence about lived experience, while historians still compare sources and context."},
+ {q:"What does emancipation mean in this historical context?",o:["The legal ending of a person's enslaved status","A new tax","A type of ship"],a:0,e:"Emancipation refers to becoming legally free from slavery."}
+];
+function renderHistoryStep(){
+ const q=historySteps[window.historyStep];
+ const el=document.getElementById("historyQuestion"); if(!el)return;
+ el.innerHTML=`<b>Question ${window.historyStep+1}/${historySteps.length}</b><p>${q.q}</p><div class="history-options">${q.o.map((x,i)=>`<button type="button" onclick="historyChoice(${i})">${String.fromCharCode(65+i)}. ${x}</button>`).join("")}</div>`;
+ const f=document.getElementById("historyFeedback"); if(f)f.textContent="";
+}
+function historyChoice(i){
+ const q=historySteps[window.historyStep]; const f=document.getElementById("historyFeedback");
+ if(!q||!f)return;
+ if(i===q.a){
+  window.historyStep++;
+  if(window.historyStep>=historySteps.length){f.innerHTML=`✅ Simulation complete. <b>Key takeaway:</b> slavery was a historical system maintained through law, coercion, and economic and political structures, while enslaved people continually resisted it and abolition emerged through complex social and political struggles.`; document.getElementById("historyQuestion").innerHTML=`<h4>🏁 Completed</h4><p>You reviewed ${historySteps.length} historical questions.</p>`; return;}
+  f.textContent="Correct — "+q.e; renderHistoryStep();
+ }else{f.textContent="Not quite. Think about the historical evidence and the experiences of enslaved people.";}
+}
+
+function playGuess(){
+ clearInterval(fn.interval);clearInterval(clickTimer);
+ const n=Math.floor(Math.random()*10)+1;
+ document.getElementById("gameArea").innerHTML='<h3>🔢 Guess Number</h3><p>Pick a number from 1 to 10.</p><input id="guessInput" type="number" min="1" max="10" placeholder="1-10" style="padding:10px;border:1px solid var(--line);border-radius:9px"><button type="button" id="guessBtn">Guess</button><div id="guessResult"></div>';
+ document.getElementById("guessBtn").addEventListener("click",()=>{const v=Number(document.getElementById("guessInput").value);const r=document.getElementById("guessResult");r.innerHTML=v===n?`<h3>🎉 Correct!</h3><p>You got ${n}.</p><button type="button" onclick="playGuess()">Play Again</button>`:`<h3>😎 Not quite!</h3><p>The number was ${n}.</p><button type="button" onclick="playGuess()">Play Again</button>`;});
+}
+function playClick(){
+ clearInterval(fn.interval);clearInterval(clickTimer);
+ let clicks=0,seconds=10,active=true;
+ const a=document.getElementById("gameArea");
+ a.innerHTML='<div class="click-rush"><h3>⚡ CLICK RUSH</h3><p>Click the big button as fast as you can for 10 seconds.</p><button type="button" id="clickTarget" class="mega-click">CLICK!<br><span id="clickCount">0</span></button><div class="click-timer" id="clickTimer">10.0s</div><button type="button" onclick="showGameMenu()">🎮 Game Menu</button></div>';
+ const btn=document.getElementById("clickTarget"),count=document.getElementById("clickCount"),timerText=document.getElementById("clickTimer");
+ btn.addEventListener("click",()=>{if(!active)return;clicks++;count.textContent=clicks;btn.animate([{transform:"scale(1)"},{transform:"scale(.94)"},{transform:"scale(1)"}],{duration:70});});
+ const started=performance.now();
+ clickTimer=setInterval(()=>{const left=Math.max(0,10-(performance.now()-started)/1000);timerText.textContent=left.toFixed(1)+"s";if(left<=0){clearInterval(clickTimer);clickTimer=null;active=false;btn.disabled=true;a.innerHTML=`<div class="game-home"><div class="game-home-icon">🏁</div><h3>TIME!</h3><p>You scored <b>${clicks} clicks</b>.</p><button type="button" onclick="playClick()">Play Again</button><button type="button" onclick="showGameMenu()">Game Menu</button></div>`;}},50);
+}
+renderProducts();updateCartCount();loadInventory();
+</script>
+
+<!-- Floating special-offer advertisement -->
+<div class="floating-offer" id="floatingOffer" role="complementary" aria-label="Special offer">
+  <div class="offer-top">
+    <span class="offer-badge">🔥 Ưu đãi đặc biệt</span>
+    <button class="offer-close" type="button" onclick="closeFloatingOffer()" aria-label="Đóng quảng cáo">×</button>
+  </div>
+  <div class="offer-body">
+    <h4>🎧 Tai nghe không dây Pro</h4>
+    <p>Âm thanh sống động, pin lâu — ưu đãi giới hạn hôm nay.</p>
+    <div class="offer-price"><span class="new-price">499.000đ</span><span class="old-price">799.000đ</span></div>
+    <button class="offer-btn" type="button" onclick="showFloatingOfferProduct()">Xem ưu đãi</button>
+  </div>
+</div>
+<script>
+function closeFloatingOffer(){
+  const ad=document.getElementById('floatingOffer');
+  if(ad) ad.remove();
+}
+function showFloatingOfferProduct(){
+  const search=document.querySelector('#searchInput, input[type="search"]');
+  if(search){
+    search.value='Tai nghe không dây Pro';
+    search.dispatchEvent(new Event('input',{bubbles:true}));
+    search.scrollIntoView({behavior:'smooth',block:'center'});
+  } else {
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+}
+</script>
+
+</body>
+</html>
